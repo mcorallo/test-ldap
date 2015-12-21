@@ -1,7 +1,7 @@
 package it.consoft.ldap.example.manager;
 
 import it.consoft.ldap.example.adapter.AdapterFactory;
-import it.consoft.ldap.example.bean.User;
+import it.consoft.ldap.example.rest.bean.User;
 
 public class LoginManager {
 

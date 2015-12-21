@@ -1,7 +1,7 @@
 package it.consoft.ldap.example.adapter.rest;
 
 import it.consoft.ldap.example.adapter.UsersAdapter;
-import it.consoft.ldap.example.bean.User;
+import it.consoft.ldap.example.rest.bean.User;
 
 public class UsersAdapterRest implements UsersAdapter {
 
