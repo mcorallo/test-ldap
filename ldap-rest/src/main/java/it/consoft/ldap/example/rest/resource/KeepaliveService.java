@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.Gson;
+import it.consoft.ldap.example.rest.RestUtils;
 
 @Path("/keepalive")
 public class KeepaliveService {
@@ -31,8 +31,7 @@ public class KeepaliveService {
 
 		Map<String, String> jsonResult = new HashMap<>();
 		jsonResult.put("result", "The REST system is up and running since " + timeString);
-		Gson gson = new Gson();
-		return gson.toJson(jsonResult);
+		return RestUtils.serialize(jsonResult);
 	}
 
 	private String getKeepaliveResponse() {
