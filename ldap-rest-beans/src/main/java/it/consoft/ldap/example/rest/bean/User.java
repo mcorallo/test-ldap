@@ -1,4 +1,4 @@
-package it.consoft.ldap.example.bean;
+package it.consoft.ldap.example.rest.bean;
 
 public class User {
 	private String username;
