@@ -1,9 +1,11 @@
 package it.consoft.ldap.example.rest.dao;
 
+import java.util.List;
+
 import it.consoft.ldap.example.rest.bean.User;
 
 public interface UsersDAO {
 
-	public User getUser(String username);
+	public List<User> getUsers(String username);
 
 }
