@@ -20,4 +20,15 @@ public class User {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [username=");
+		builder.append(username);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }
