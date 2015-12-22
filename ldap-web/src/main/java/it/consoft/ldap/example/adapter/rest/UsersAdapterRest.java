@@ -18,7 +18,7 @@ public class UsersAdapterRest implements UsersAdapter {
 	public User getUser(String username) {
 
 		Client client = ClientBuilder.newClient().register(JacksonFeature.class);
-		WebTarget target = client.target("http://localhost:8080/ldap-rest/rest/users");
+		WebTarget target = client.target("http://localhost:8081/ldap-rest/rest/users");
 		target = target.queryParam("username", username);
 		List<User> users = target.request().get(new GenericType<List<User>>() {
 		});

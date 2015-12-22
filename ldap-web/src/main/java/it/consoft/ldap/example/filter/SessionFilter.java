@@ -23,6 +23,9 @@ public class SessionFilter implements Filter {
 	private static final Pattern excludedPatterns = Pattern.compile("("//
 			+ "/errors/.*"//
 			+ "|/example/Login\\.action"//
+			+ "|/js/.*"//
+			+ "|/css/.*"//
+			+ "|/fonts/.*"//
 			+ ")");
 
 	@Override

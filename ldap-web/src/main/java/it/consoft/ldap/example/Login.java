@@ -1,5 +1,6 @@
 package it.consoft.ldap.example;
 
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +18,15 @@ public class Login extends ExampleSupport {
 		logger.debug("login procedure for: {} started", username);
 
 		boolean ok = new LoginManager().login(getUsername(), getPassword());
+
 		logger.info("login procedure for: " + username + " result " + ok);
-		return ok ? "saasddas" : INPUT;
+
+		if (ok) {
+			ServletActionContext.getRequest().getSession().setAttribute("username", username);
+			return "saasddas";
+		} else {
+			return INPUT;
+		}
 	}
 
 	public String getUsername() {
