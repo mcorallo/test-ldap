@@ -101,4 +101,12 @@ public class UsersDAOFake implements UsersDAO {
 		return false;
 	}
 
+	public static List<User> getUsersDatabase() {
+		return usersDatabase;
+	}
+
+	public static void setUsersDatabase(List<User> usersDatabase) {
+		UsersDAOFake.usersDatabase = usersDatabase;
+	}
+
 }
