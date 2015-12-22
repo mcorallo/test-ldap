@@ -2,6 +2,7 @@ package it.consoft.ldap.example.rest.resource;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,10 +17,10 @@ import javax.ws.rs.core.Response.Status;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.manager.UsersManager;
-import it.consoft.ldap.example.rest.util.JsonUtils;
 
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class Users {
 
 	private UsersManager usersManager = new UsersManager();
@@ -43,9 +44,7 @@ public class Users {
 	}
 
 	@POST
-	public Response addUser(String newUserJson) {
-		User user = JsonUtils.deserialize(newUserJson, User.class);
-
+	public Response addUser(User user) {
 		boolean result = usersManager.addUser(user);
 		if (!result) {
 			return Response.status(Status.CONFLICT).entity("User already exists: " + user.getUsername()).build();
@@ -56,8 +55,7 @@ public class Users {
 
 	@PUT
 	@Path("/{id}")
-	public Response updateUser(@PathParam("id") Integer id, String newUserJson) {
-		User user = JsonUtils.deserialize(newUserJson, User.class);
+	public Response updateUser(@PathParam("id") Integer id, User user) {
 		boolean result = usersManager.updateUser(id, user);
 
 		if (!result) {
