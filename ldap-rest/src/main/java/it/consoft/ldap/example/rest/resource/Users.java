@@ -3,6 +3,7 @@ package it.consoft.ldap.example.rest.resource;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -56,6 +57,19 @@ public class Users {
 			return Response.status(Status.CONFLICT).entity("User already exists: " + user.getUsername()).build();
 		}
 		return Response.status(Status.OK).entity("User added: " + user.getId()).build();
+
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response deleteUser(@PathParam("id") Integer id) {
+		UsersDAO dao = DAOFactory.getUsersDAO();
+		boolean result = dao.deleteUser(id);
+
+		if (!result) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.status(Status.OK).build();
 
 	}
 

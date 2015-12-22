@@ -1,6 +1,7 @@
 package it.consoft.ldap.example.rest.dao.fake;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -63,6 +64,25 @@ public class UsersDAOFake implements UsersDAO {
 		usersDatabase.add(user);
 		logger.debug("User added: {}", user);
 		return true;
+	}
+
+	@Override
+	public boolean deleteUser(Integer id) {
+
+		Iterator<User> iterator = usersDatabase.iterator();
+		while (iterator.hasNext()) {
+			User user = iterator.next();
+			if (user.getId() == id) {
+				iterator.remove();
+				logger.info("User deleted: {}", user);
+
+				return true;
+			}
+		}
+
+		logger.error("User not found: {}", id);
+
+		return false;
 	}
 
 }
