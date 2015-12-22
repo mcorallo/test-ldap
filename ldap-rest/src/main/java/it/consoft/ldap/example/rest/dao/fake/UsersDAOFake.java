@@ -19,8 +19,7 @@ public class UsersDAOFake implements UsersDAO {
 	private static final Logger logger = LoggerFactory.getLogger(UsersDAOFake.class);
 
 	static {
-		usersDatabase.add(new User(idGenerator.incrementAndGet(), "pippo", "pluto"));
-		usersDatabase.add(new User(idGenerator.incrementAndGet(), "paperino", "minnie"));
+		usersDatabase.add(new User(idGenerator.incrementAndGet(), "admin", "admin"));
 	}
 
 	@Override
