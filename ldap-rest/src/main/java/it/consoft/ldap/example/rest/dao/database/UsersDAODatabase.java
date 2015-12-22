@@ -17,4 +17,9 @@ public class UsersDAODatabase implements UsersDAO {
 		throw new RuntimeException("JDBC layer not implemented.");
 	}
 
+	@Override
+	public boolean addUser(User user) {
+		throw new RuntimeException("JDBC layer not implemented.");
+	}
+
 }
