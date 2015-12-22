@@ -8,4 +8,6 @@ public interface UsersDAO {
 
 	public List<User> getUsers(String username);
 
+	public User getUser(Integer id);
+
 }

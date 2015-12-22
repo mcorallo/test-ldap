@@ -8,20 +8,20 @@ import it.consoft.ldap.example.rest.dao.UsersDAO;
 
 public class UsersDAOFake implements UsersDAO {
 
-	private static List<User> users = new ArrayList<>();
+	private static List<User> usersDatabase = new ArrayList<>();
 
 	static {
-		users.add(new User("pippo", "pluto"));
-		users.add(new User("paperino", "minnie"));
+		usersDatabase.add(new User(0, "pippo", "pluto"));
+		usersDatabase.add(new User(1, "paperino", "minnie"));
 	}
 
 	@Override
 	public List<User> getUsers(String username) {
 		if (username == null) {
-			return users;
+			return usersDatabase;
 		} else {
 			List<User> result = new ArrayList<>();
-			for (User user : users) {
+			for (User user : usersDatabase) {
 				if (user.getUsername().equals(username)) {
 					result.add(user);
 				}
@@ -29,6 +29,16 @@ public class UsersDAOFake implements UsersDAO {
 			return result;
 		}
 		// return null;
+	}
+
+	@Override
+	public User getUser(Integer id) {
+		for (User user : usersDatabase) {
+			if (user.getId().equals(id)) {
+				return user;
+			}
+		}
+		return null;
 	}
 
 }

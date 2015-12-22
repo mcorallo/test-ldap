@@ -12,4 +12,9 @@ public class UsersDAOLdap implements UsersDAO {
 		throw new RuntimeException("LDAP layer not implemented.");
 	}
 
+	@Override
+	public User getUser(Integer id) {
+		throw new RuntimeException("LDAP layer not implemented.");
+	}
+
 }
