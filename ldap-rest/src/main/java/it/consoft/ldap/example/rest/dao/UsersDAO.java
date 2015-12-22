@@ -10,4 +10,6 @@ public interface UsersDAO {
 
 	public User getUser(Integer id);
 
+	public boolean addUser(User user);
+
 }
