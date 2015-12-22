@@ -14,4 +14,6 @@ public interface UsersDAO {
 
 	public boolean deleteUser(Integer id);
 
+	public boolean updateUser(Integer id, User user);
+
 }

@@ -85,4 +85,20 @@ public class UsersDAOFake implements UsersDAO {
 		return false;
 	}
 
+	@Override
+	public boolean updateUser(Integer id, User user) {
+		for (User oldUser : usersDatabase) {
+			if (user.getId() == id) {
+				oldUser.setUsername(user.getUsername());
+				oldUser.setPassword(user.getPassword());
+				oldUser.setProfile(user.getProfile());
+				logger.info("User updated: {}", user);
+				return true;
+			}
+		}
+
+		logger.error("User not found: {}", id);
+		return false;
+	}
+
 }

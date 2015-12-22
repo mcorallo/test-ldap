@@ -22,4 +22,24 @@ public class UsersManager {
 		return usersList;
 	}
 
+	public boolean addUser(User user) {
+		UsersDAO dao = DAOFactory.getUsersDAO();
+
+		return dao.addUser(user);
+	}
+
+	public boolean updateUser(Integer id, User user) {
+		UsersDAO dao = DAOFactory.getUsersDAO();
+		return dao.updateUser(id, user);
+	}
+
+	public boolean deleteUser(Integer id) {
+		UsersDAO dao = DAOFactory.getUsersDAO();
+		return dao.deleteUser(id);
+	}
+
+	public User getUser(Integer id) {
+		return DAOFactory.getUsersDAO().getUser(id);
+	}
+
 }
