@@ -106,7 +106,8 @@ public class UsersDAOFake implements UsersDAO {
 	}
 
 	public static void setUsersDatabase(List<User> usersDatabase) {
-		UsersDAOFake.usersDatabase = usersDatabase;
+		UsersDAOFake.usersDatabase.clear();
+		UsersDAOFake.usersDatabase.addAll(usersDatabase);
 	}
 
 }
