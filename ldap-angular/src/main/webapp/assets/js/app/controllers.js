@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-var phonecatControllers = angular.module('phonecatControllers', []);
+var ldapControllers = angular.module('ldapControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', [ '$scope', 'Phone'/*, '$http'*/, function($scope, Phone) {
+ldapControllers.controller('PhoneListCtrl', [ '$scope', 'Phone'/*, '$http'*/, function($scope, Phone) {
 	//	$http.get('main?command=loadPhones').success(function(data) {
 	//		$scope.phones = data;
 	//	});
@@ -12,7 +12,7 @@ phonecatControllers.controller('PhoneListCtrl', [ '$scope', 'Phone'/*, '$http'*/
 	$scope.orderProp = 'age';
 } ]);
 
-phonecatControllers.controller('PhoneDetailCtrl', [ '$scope', '$routeParams', 'Phone'/*, '$http'*/, function($scope, $routeParams, Phone) {
+ldapControllers.controller('PhoneDetailCtrl', [ '$scope', '$routeParams', 'Phone'/*, '$http'*/, function($scope, $routeParams, Phone) {
 	//	$http.get('main?command=phoneDetail&phoneId=' + $routeParams.phoneId + '.json').success(function(data) {
 	//		$scope.phone = data;
 	//		$scope.mainImageUrl = data.images[0];

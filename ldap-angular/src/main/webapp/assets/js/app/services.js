@@ -2,9 +2,9 @@
 
 /* Services */
 
-var phonecatServices = angular.module('phonecatServices', [ 'ngResource' ]);
+var ldapServices = angular.module('ldapServices', [ 'ngResource' ]);
 
-phonecatServices.factory('Phone', [ '$resource', function($resource) {
+ldapServices.factory('Phone', [ '$resource', function($resource) {
 	return $resource('/ldap-rest/rest/phones/:phoneId.json', {}, {
 		query : {
 			method : 'GET',
