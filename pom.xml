@@ -70,5 +70,6 @@
 		<module>ldap-web</module>
 		<module>ldap-rest</module>
 		<module>ldap-rest-beans</module>
+		<module>ldap-angular</module>
 	</modules>
 </project>
