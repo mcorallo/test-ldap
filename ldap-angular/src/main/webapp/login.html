@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LDAP test - login</title>
+
+
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/main.css">
+
+<script src="assets/js/lib/jquery-1.11.3.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+	$(function() {
+		$('#btn-login').click(function(e) {
+			$('#error-message').html("...");
+			$('#error-message').slideDown();
+			e.preventDefault();
+			$.post('login', $('#login-form').serialize()).done(function() {
+				window.location = 'main.html';
+			}).fail(function(jqXHR, textStatus, errorThrown) {
+				$('#error-message').html("error: " + jqXHR.status + " = " + errorThrown);
+			})
+		});
+	});
+</script>
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h2 class="col-sm-6 col-sm-offset-3 text-center">login</h2>
+
+		<form id="login-form" class="form-horizontal col-sm-6 col-sm-offset-3 well">
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" name="username">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" name="password">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button id="btn-login" type="submit" class="btn btn-default">Sign in</button>
+				</div>
+			</div>
+
+			<div id="error-message" class="alert alert-danger" role="alert" style="display: none;"></div>
+		</form>
+
+	</div>
+</body>
+</html>
