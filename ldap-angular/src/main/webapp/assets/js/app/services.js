@@ -5,7 +5,7 @@
 var ldapServices = angular.module('ldapServices', [ 'ngResource' ]);
 
 ldapServices.factory('Phone', [ '$resource', function($resource) {
-	return $resource('/ldap-rest/rest/phones/:phoneId.json', {}, {
+	return $resource('main?request=/phones/:phoneId.json', {}, {
 		query : {
 			method : 'GET',
 			params : {
