@@ -6,10 +6,16 @@ import org.junit.rules.TestWatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import it.consoft.ldap.example.rest.util.ConfigurationManager;
+
 public abstract class LdapRestBaseTest {
 
 	protected static final Logger logger = LoggerFactory.getLogger(LdapRestBaseTest.class);
 
+	static {
+		ConfigurationManager.setUnitTestEnv();
+	}
+	
 	@Rule
 	public TestRule watcher = new TestWatcher() {
 		protected void starting(org.junit.runner.Description description) {

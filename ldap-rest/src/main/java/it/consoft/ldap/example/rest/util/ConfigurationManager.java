@@ -43,4 +43,12 @@ public class ConfigurationManager {
 	public static boolean isTestEnv() {
 		return "test".equals(environment);
 	}
+	
+	public static void setUnitTestEnv() {
+		environment = "unit-test";
+		
+		System.out.println("***************************************************");
+		System.out.println("FORCED CURRENT ENVIRONMENT: " + environment);
+		System.out.println("***************************************************");
+	}
 }
