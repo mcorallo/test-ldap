@@ -1,6 +1,5 @@
 package it.consoft.ldap.example.rest.resource;
 
-import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,7 +20,7 @@ public class Ldap extends BaseResource {
 	private LdapManager ldapManager = new LdapManager();
 
 	@GET
-	public Response getUsers(@QueryParam("username") String username, @QueryParam("password") String password) throws NamingException {
+	public Response getUsers(@QueryParam("username") String username, @QueryParam("password") String password) throws Exception {
 		User user = ldapManager.getUser(username, password);
 		ResponseBuilder respBuilder = null;
 		if (user == null) {
