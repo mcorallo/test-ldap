@@ -79,5 +79,10 @@
 			<artifactId>ldap-rest-beans</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>it.consoft</groupId>
+			<artifactId>shared-utils-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
