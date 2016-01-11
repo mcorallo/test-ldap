@@ -1,4 +1,4 @@
-package it.consoft.ldap.web;
+package it.consoft.ldap.web.auth;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -24,7 +25,7 @@ import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.web.utils.JsonUtils;
 
 @Component
-public class CustomLdapAuthenticationProvider implements AuthenticationProvider {
+public class LdapAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -38,11 +39,11 @@ public class CustomLdapAuthenticationProvider implements AuthenticationProvider 
 
 			HttpGet httpGet = new HttpGet(builder.build());
 			try (CloseableHttpResponse response1 = httpclient.execute(httpGet)) {
-				HttpEntity entity1 = response1.getEntity();
-				String userJson = EntityUtils.toString(entity1);
-				User user = JsonUtils.deserialize(userJson, User.class);
-				EntityUtils.consume(entity1);
-				if (user != null) {
+				if (response1.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					HttpEntity entity1 = response1.getEntity();
+					String userJson = EntityUtils.toString(entity1);
+					User user = JsonUtils.deserialize(userJson, User.class);
+					EntityUtils.consume(entity1);
 					List<GrantedAuthority> grantedAuths = new ArrayList<>();
 					//prendere i gruppi restituiti da LDAP
 					//prendere il relativo mapping con i profili locali da DB
@@ -50,6 +51,8 @@ public class CustomLdapAuthenticationProvider implements AuthenticationProvider 
 					grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 					Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
 					return auth;
+				} else {
+					//TODO log error code
 				}
 			}
 		} catch (IOException | URISyntaxException e1) {

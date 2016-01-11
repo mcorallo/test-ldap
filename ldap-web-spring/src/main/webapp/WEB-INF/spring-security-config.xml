@@ -4,24 +4,24 @@
     ">
 
 	<http auto-config="true">
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/login**" access="permitAll" />
 		<intercept-url pattern="/hello/**" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
-		<form-login authentication-failure-url="/Access_Denied" />
+		<form-login 
+		    login-page="/login" 
+		    default-target-url="/" 
+			authentication-failure-url="/login?error" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
 	</http>
 
 
-	<beans:bean id="clap" class="it.consoft.ldap.web.CustomLdapAuthenticationProvider"></beans:bean>
+	<beans:bean id="ldapAuthenticationProvider" class="it.consoft.ldap.web.auth.LdapAuthenticationProvider"></beans:bean>
 
 	<authentication-manager>
-<!-- 		<authentication-provider> -->
-<!-- 			<user-service> -->
-<!-- 				<user name="bill" password="abc123" authorities="ROLE_USER" /> -->
-<!-- 				<user name="admin" password="root123" authorities="ROLE_ADMIN" /> -->
-<!-- 				<user name="dba" password="root123" authorities="ROLE_ADMIN,ROLE_DBA" /> -->
-<!-- 			</user-service> -->
-<!-- 		</authentication-provider> -->
-
-		<authentication-provider ref="clap" />
+		<authentication-provider ref="ldapAuthenticationProvider" />
 	</authentication-manager>
 
 
