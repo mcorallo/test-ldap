@@ -16,7 +16,9 @@ public class UsersManager {
 		ProfilesDAO pd = DAOFactory.getProfilesDAO();
 
 		for (User user : usersList) {
-			user.setProfile((String) pd.getUserProfile(user.getId()));
+			user.setMemberOf(new String[] {
+					(String) pd.getUserProfile(user.getId())
+			});
 		}
 
 		return usersList;

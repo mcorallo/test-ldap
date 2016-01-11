@@ -6,17 +6,20 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.directory.InitialDirContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.dao.LdapDAO;
 
 public class LdapDAOLdap implements LdapDAO {
+	private static final Logger logger = LoggerFactory.getLogger(LdapDAOLdap.class);
 
 	@Override
 	public User getUser(String username, String password) throws NamingException {
 		Hashtable<String, String> env = new Hashtable<>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.PROVIDER_URL, "ldap://ldap.forumsys.com");
-		// Authenticate as S. User and password "mysecret"
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, "uid=" + username + ",dc=example,dc=com");
 		env.put(Context.SECURITY_CREDENTIALS, password);
@@ -24,8 +27,7 @@ public class LdapDAOLdap implements LdapDAO {
 		try {
 			new InitialDirContext(env);
 		} catch (NamingException e) {
-			// TODO add log
-			e.printStackTrace();
+			logger.error("", e);
 			return null;
 		}
 
@@ -33,5 +35,7 @@ public class LdapDAOLdap implements LdapDAO {
 		user.setUsername(username);
 		return user;
 	}
-
+	
+	
+	
 }
