@@ -33,9 +33,10 @@ public class LdapDAOLdap implements LdapDAO {
 
 		User user = new User();
 		user.setUsername(username);
+		user.setMemberOf(new String[] {
+				"admin"
+		});
 		return user;
 	}
-	
-	
-	
+
 }
