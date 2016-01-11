@@ -1,7 +1,6 @@
 package it.consoft.ldap.example.rest.dao;
 
 import it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase;
-import it.consoft.ldap.example.rest.dao.fake.LdapDAOFake;
 import it.consoft.ldap.example.rest.dao.fake.ProfilesDAOFake;
 import it.consoft.ldap.example.rest.dao.fake.UsersDAOFake;
 import it.consoft.ldap.example.rest.dao.ldap.LdapDAOLdap;
@@ -20,6 +19,6 @@ public class DAOFactory {
 	}
 
 	public static LdapDAO getLdapDAO() {
-		return testEnvironment ? new LdapDAOFake() : new LdapDAOLdap();
+		return testEnvironment ? new LdapDAOLdap() : new LdapDAOLdap();
 	}
 }
