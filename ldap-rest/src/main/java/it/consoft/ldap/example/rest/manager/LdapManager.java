@@ -8,9 +8,9 @@ public class LdapManager {
 	public User getUser(String username, String password) throws Exception {
 		User user = DAOFactory.getLdapDAO().getUser(username, password);
 
-		DAOFactory.getProfilesDAO().init();
+//		DAOFactory.getProfilesDAO().init();
 		
-		String userName = "user1";
+//		String userName = "user1";
 //		int inserted = queryHelper.executeUpdate("INSERT INTO test values (?)", userName);
 //
 //		List<Record> select = queryHelper.select("SELECT * FROM test WHERE user=?", userName);

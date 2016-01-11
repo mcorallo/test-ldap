@@ -1,11 +1,15 @@
 package it.consoft.ldap.example.rest.bean;
 
-public class User {
+import java.io.Serializable;
+import java.util.Arrays;
+
+@SuppressWarnings("serial")
+public class User implements Serializable {
 
 	private Integer id;
 	private String username;
 	private String password;
-	private String profile;
+	private String[] memberOf;
 
 	public User() {
 	}
@@ -40,6 +44,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String[] getMemberOf() {
+		return memberOf;
+	}
+
+	public void setMemberOf(String[] memberOf) {
+		this.memberOf = memberOf;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -49,18 +61,10 @@ public class User {
 		builder.append(username);
 		builder.append(", password=");
 		builder.append(password);
-		builder.append(", profile=");
-		builder.append(profile);
+		builder.append(", memberOf=");
+		builder.append(Arrays.toString(memberOf));
 		builder.append("]");
 		return builder.toString();
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
 	}
 
 }
