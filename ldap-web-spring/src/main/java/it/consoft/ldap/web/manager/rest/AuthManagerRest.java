@@ -1,4 +1,4 @@
-package it.consoft.ldap.web.utils;
+package it.consoft.ldap.web.manager.rest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +11,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import it.consoft.ldap.example.rest.bean.User;
+import it.consoft.ldap.web.manager.AuthManager;
+import it.consoft.ldap.web.utils.RestUtils;
 
-public class AuthUtils {
+//@Service
+public class AuthManagerRest implements AuthManager {
 
-	public static Authentication authenticate(String name, String password) {
+	@Override
+	public Authentication authenticate(String name, String password) {
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("username", name);
 		queryParams.put("password", password);

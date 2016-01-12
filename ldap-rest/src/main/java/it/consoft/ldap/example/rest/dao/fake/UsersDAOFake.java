@@ -90,7 +90,7 @@ public class UsersDAOFake implements UsersDAO {
 			if (user.getId() == id) {
 				oldUser.setUsername(user.getUsername());
 				oldUser.setPassword(user.getPassword());
-				oldUser.setMemberOf(user.getMemberOf());
+				oldUser.setGroups(user.getGroups());
 				logger.info("User updated: {}", user);
 				return true;
 			}

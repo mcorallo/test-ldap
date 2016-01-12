@@ -46,4 +46,9 @@ public class ProfilesDAODatabase implements ProfilesDAO {
 		int inserted = queryHelper.executeUpdate(builder.getQuery(), user.getUsername());
 		return inserted;
 	}
+
+	@Override
+	public String getLocalGroup(String externalGroup) {
+		throw new RuntimeException("JDBC layer not implemented.");
+	}
 }

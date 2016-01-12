@@ -23,4 +23,9 @@ public class ProfilesDAOFake implements ProfilesDAO {
 		return 0;
 	}
 
+	@Override
+	public String getLocalGroup(String externalGroup) {
+		return null;
+	}
+
 }
