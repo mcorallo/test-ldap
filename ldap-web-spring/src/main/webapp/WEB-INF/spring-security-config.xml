@@ -19,6 +19,7 @@
 
 
 	<beans:bean id="ldapAuthenticationProvider" class="it.consoft.ldap.web.auth.LdapAuthenticationProvider"></beans:bean>
+	<beans:bean id="authManager" class="it.consoft.ldap.web.manager.ldap.AuthManagerLdap"></beans:bean>
 
 	<authentication-manager>
 		<authentication-provider ref="ldapAuthenticationProvider" />

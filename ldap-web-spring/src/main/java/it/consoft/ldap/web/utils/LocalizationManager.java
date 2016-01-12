@@ -2,8 +2,8 @@ package it.consoft.ldap.web.utils;
 
 import java.util.Locale;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.NoSuchMessageException;
@@ -11,7 +11,8 @@ import org.springframework.context.NoSuchMessageException;
 import it.consoft.ldap.web.filter.LocalizationFilter;
 
 public class LocalizationManager implements MessageSourceAware {
-	private static final Logger logger = LogManager.getLogger(LocalizationManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(LocalizationManager.class);
+
 	private MessageSource messageSource;
 	private ThreadLocal<Locale> locale = new ThreadLocal<>();
 

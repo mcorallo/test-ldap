@@ -9,7 +9,6 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
-	public static final String GROUPS = "groups";
 	private Integer id;
 	private String username;
 	private String password;
@@ -63,12 +62,6 @@ public class User implements Serializable {
 
 	public void setAttrs(Map<String, List<Object>> attrs) {
 		this.attrs = attrs;
-		this.groups = new ArrayList<>();
-		if (attrs != null) {
-			for (Object o : attrs.get(GROUPS)) {
-				this.groups.add((String) o);
-			}
-		}
 	}
 
 }
