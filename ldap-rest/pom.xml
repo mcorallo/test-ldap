@@ -14,6 +14,7 @@
 	<properties>
 		<jersey2.version>2.19</jersey2.version>
 		<jaxrs.version>2.0.1</jaxrs.version>
+		<shared.utils.version>0.0.1-SNAPSHOT</shared.utils.version>
 	</properties>
 
 	<profiles>
@@ -83,12 +84,24 @@
 		<dependency>
 			<groupId>it.consoft</groupId>
 			<artifactId>shared-utils-jdbc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${shared.utils.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>it.consoft</groupId>
 			<artifactId>shared-utils-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${shared.utils.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>it.consoft</groupId>
+			<artifactId>shared-utils-ldap</artifactId>
+			<version>${shared.utils.version}</version>
+		</dependency>
+		
+<!-- utils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
 		</dependency>
 
 <!-- test -->
@@ -101,7 +114,7 @@
 		<dependency>
 			<groupId>it.consoft</groupId>
 			<artifactId>shared-utils-test</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${shared.utils.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
