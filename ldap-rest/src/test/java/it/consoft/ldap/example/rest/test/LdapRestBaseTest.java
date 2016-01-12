@@ -1,12 +1,12 @@
 package it.consoft.ldap.example.rest.test;
 
-import it.consoft.common.configuration.ConfigurationManager;
+import it.consoft.ldap.example.rest.util.RestUtils;
 import it.consoft.test.BaseTest;
 
 public abstract class LdapRestBaseTest extends BaseTest {
 
 	static {
-		ConfigurationManager.setUnitTestEnv();
+		RestUtils.getConfigurationmanager().setUnitTestEnv();
 	}
 
 }

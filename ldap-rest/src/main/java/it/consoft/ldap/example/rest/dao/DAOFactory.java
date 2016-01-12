@@ -1,14 +1,14 @@
 package it.consoft.ldap.example.rest.dao;
 
-import it.consoft.common.configuration.ConfigurationManager;
 import it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase;
 import it.consoft.ldap.example.rest.dao.fake.ProfilesDAOFake;
 import it.consoft.ldap.example.rest.dao.fake.UsersDAOFake;
 import it.consoft.ldap.example.rest.dao.ldap.LdapDAOLdap;
+import it.consoft.ldap.example.rest.util.RestUtils;
 
 public class DAOFactory {
 
-	private static boolean testEnvironment = ConfigurationManager.isTestEnv();
+	private static boolean testEnvironment = RestUtils.getConfigurationmanager().isTestEnv();
 
 	public static UsersDAO getUsersDAO() {
 		return new UsersDAOFake();
