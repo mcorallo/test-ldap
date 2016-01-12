@@ -12,11 +12,6 @@ import it.consoft.ldap.example.rest.test.LdapRestBaseTest;
 
 public class LdapDAOLdapTest extends LdapRestBaseTest {
 
-	@Test(expected = RuntimeException.class)
-	public void getUserWithNullPasswordTest() throws NamingException {
-		DAOFactory.getLdapDAO().getUser("admin", null);
-	}
-
 	@Test
 	public void getExistingUserTest() throws NamingException {
 		String username = "tesla";
@@ -26,6 +21,11 @@ public class LdapDAOLdapTest extends LdapRestBaseTest {
 		assertEquals(username, user.getUsername());
 		assertEquals(1, user.getGroups().size());
 		assertEquals("Nikola Tesla", user.getGroups().get(0));
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void getUserWithNullPasswordTest() throws NamingException {
+		DAOFactory.getLdapDAO().getUser("admin", null);
 	}
 
 	@Test
