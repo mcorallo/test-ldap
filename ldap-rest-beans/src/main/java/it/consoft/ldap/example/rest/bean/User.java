@@ -14,7 +14,7 @@ public class User implements Serializable {
 	private String username;
 	private String password;
 	private Map<String, List<Object>> attrs = new HashMap<>();
-	private List<String> groups;
+	private List<String> groups = new ArrayList<>();
 
 	public User() {
 	}

@@ -79,22 +79,15 @@
 			<version>${project.version}</version>
 		</dependency>
 
-<!-- utils -->
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-
 <!-- consoft -->
 		<dependency>
 			<groupId>it.consoft</groupId>
 			<artifactId>shared-utils-jdbc</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>it.consoft</groupId>
+			<artifactId>shared-utils-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -103,6 +96,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.190</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>it.consoft</groupId>
+			<artifactId>shared-utils-test</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
