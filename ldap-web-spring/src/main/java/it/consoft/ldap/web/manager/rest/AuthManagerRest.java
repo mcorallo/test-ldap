@@ -26,7 +26,7 @@ public class AuthManagerRest implements AuthManager {
 		User user = RestUtils.get("ldap", queryParams, null, User.class);
 
 		List<GrantedAuthority> grantedAuths = new ArrayList<>();
-		for (String s : user.getMemberOf()) {
+		for (String s : user.getGroups()) {
 			grantedAuths.add(new SimpleGrantedAuthority(getGrantedAuth(s)));
 		}
 		Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
