@@ -11,4 +11,6 @@ public interface ProfilesDAO {
 	void init() throws SQLException;
 
 	int createLocalUser(User user) throws SQLException;
+
+	String getLocalGroup(String externalGroup);
 }

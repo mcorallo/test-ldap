@@ -24,6 +24,8 @@ public class LdapDAOLdapTest extends LdapRestBaseTest {
 		User user = DAOFactory.getLdapDAO().getUser(username, password);
 		assertNotNull(user);
 		assertEquals(username, user.getUsername());
+		assertEquals(1, user.getGroups().size());
+		assertEquals("Nikola Tesla", user.getGroups().get(0));
 	}
 	
 	@Test

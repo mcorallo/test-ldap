@@ -1,15 +1,20 @@
 package it.consoft.ldap.example.rest.bean;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
+	public static final String GROUPS = "groups";
 	private Integer id;
 	private String username;
 	private String password;
-	private String[] memberOf;
+	private Map<String, List<Object>> attrs = new HashMap<>();
+	private List<String> groups;
 
 	public User() {
 	}
@@ -44,27 +49,26 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String[] getMemberOf() {
-		return memberOf;
+	public List<String> getGroups() {
+		return groups;
 	}
 
-	public void setMemberOf(String[] memberOf) {
-		this.memberOf = memberOf;
+	public void setGroups(List<String> groups) {
+		this.groups = groups;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", memberOf=");
-		builder.append(Arrays.toString(memberOf));
-		builder.append("]");
-		return builder.toString();
+	public Map<String, List<Object>> getAttrs() {
+		return attrs;
+	}
+
+	public void setAttrs(Map<String, List<Object>> attrs) {
+		this.attrs = attrs;
+		this.groups = new ArrayList<>();
+		if (attrs != null) {
+			for (Object o : attrs.get(GROUPS)) {
+				this.groups.add((String) o);
+			}
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package it.consoft.ldap.example.rest.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.consoft.ldap.example.rest.bean.User;
@@ -16,9 +17,11 @@ public class UsersManager {
 		ProfilesDAO pd = DAOFactory.getProfilesDAO();
 
 		for (User user : usersList) {
-			user.setMemberOf(new String[] {
-					(String) pd.getUserProfile(user.getId())
-			});
+			List<String> localGroups = new ArrayList<>();
+			for (String g : user.getGroups()) {
+				localGroups.add(pd.getLocalGroup(g));
+			}
+			user.setGroups(localGroups);
 		}
 
 		return usersList;
