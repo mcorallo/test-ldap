@@ -15,6 +15,8 @@
 
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
+<spring:url value="/login2" var="login" />
+<spring:url value="/resources/core/js/jquery-1.12.0.min.js" var="jquery" />
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
@@ -26,7 +28,7 @@
 	<div class="container">
 		<h2 class="form-signin-heading text-center">Please sign in</h2>
 
-		<form class="form-horizontal col-sm-6 col-sm-offset-3 well" method="post">
+		<form id="loginForm" class="form-horizontal col-sm-6 col-sm-offset-3 well" method="post">
 			<div class="form-group">
 				<label for="username" class="col-sm-4 control-label">${labels.get('username')}</label>
 				<div class="col-sm-8">
@@ -41,7 +43,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-8">
-					<button type="submit" class="btn btn-primary">Sign in</button>
+					<button id="submit" type="submit" class="btn btn-primary">Sign in</button>
 				</div>
 			</div>
 
@@ -58,10 +60,27 @@
 	</div>
 
 
+
+	<script src="${jquery}"></script>
+
+	<script>
+		$("#loginForm").submit(function(e) {
+			e.preventDefault();
+			$.ajax({
+				type : "POST",
+				url : "${login}",
+				data : $("form").serialize(),
+				success : function() {
+					console.log("success");
+					window.location = "hello";
+				},
+				error : function() {
+					console.log("error");
+				}
+			});
+		});
+	</script>
+
 </body>
 </html>
 
-
-<script>
-	
-</script>
