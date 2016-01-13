@@ -15,6 +15,8 @@ import it.consoft.ldap.web.utils.LocalizationManager;
 
 public class LocalizationFilter implements Filter {
 
+	public static final String LABELS = "labels";
+
 	public static final String SESSION_LANG = "session_lang";
 
 	private static LocalizationManager localizationManager;
@@ -23,7 +25,7 @@ public class LocalizationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 
-		req.setAttribute("labels", localizationManager);
+		req.setAttribute(LABELS, localizationManager);
 		String lang = req.getParameter("lang");
 		if (lang == null) {
 			lang = (String) req.getSession().getAttribute(SESSION_LANG);

@@ -11,11 +11,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Signin Template for Bootstrap</title>
+<title>Test LDAP</title>
 
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
-<spring:url value="/login2" var="login" />
+<spring:url value="/authenticate" var="login" />
 <spring:url value="/resources/core/js/jquery-1.12.0.min.js" var="jquery" />
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
@@ -71,11 +71,10 @@
 				url : "${login}",
 				data : $("form").serialize(),
 				success : function() {
-					console.log("success");
 					window.location = "hello";
 				},
-				error : function() {
-					console.log("error");
+				error : function(xhr, status, error) {
+					window.location = "login?error=" + xhr.status;
 				}
 			});
 		});
