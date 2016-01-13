@@ -1,0 +1,11 @@
+The rest service is published under basic authentication.
+
+When deploying the service on a new application server make sure to define the "rest-client" role and assign a user to it.
+
+
+TOMCAT EXAMPLE:
+
+- add to tomcat-users.xml file:
+
+<role rolename="rest-client"/>
+<user username="test" password="test" roles="rest-client"/>
