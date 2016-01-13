@@ -1,8 +1,8 @@
 package it.consoft.ldap.example.rest.dao.database;
 
-import it.consoft.sharedutils.jdbc.DBConfiguration;
-import it.consoft.sharedutils.jdbc.QueryHelper;
-import it.consoft.sharedutils.jdbc.QueryHelperJdbc;
+import it.consoft.shared.jdbc.DBConfiguration;
+import it.consoft.shared.jdbc.QueryHelper;
+import it.consoft.shared.jdbc.QueryHelperJdbc;
 
 public class DbUtils {
 

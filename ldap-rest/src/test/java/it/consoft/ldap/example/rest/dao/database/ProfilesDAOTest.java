@@ -12,9 +12,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import it.consoft.ldap.example.rest.bean.User;
-import it.consoft.sharedutils.jdbc.QueryBuilder;
-import it.consoft.sharedutils.jdbc.QueryHelper;
-import it.consoft.sharedutils.jdbc.Record;
+import it.consoft.shared.jdbc.QueryBuilder;
+import it.consoft.shared.jdbc.QueryHelper;
+import it.consoft.shared.jdbc.Record;
 
 /**
  * @author csmi871

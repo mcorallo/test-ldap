@@ -1,7 +1,7 @@
 package it.consoft.ldap.example.rest.test;
 
 import it.consoft.ldap.example.rest.util.RestUtils;
-import it.consoft.test.BaseTest;
+import it.consoft.shared.test.BaseTest;
 
 public abstract class LdapRestBaseTest extends BaseTest {
 

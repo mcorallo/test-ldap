@@ -1,6 +1,6 @@
 package it.consoft.ldap.web.utils;
 
-import it.consoft.common.configuration.ConfigurationManager;
+import it.consoft.shared.common.configuration.ConfigurationManager;
 
 public class WebUtils {
 
