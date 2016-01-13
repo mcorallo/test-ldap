@@ -71,7 +71,7 @@
 				url : "${login}",
 				data : $("form").serialize(),
 				success : function() {
-					window.location = "hello";
+					window.location = "hello/123";
 				},
 				error : function(xhr, status, error) {
 					window.location = "login?error=" + xhr.status;

@@ -1,6 +1,7 @@
 package it.consoft.ldap.example.rest.dao.fake;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.dao.ProfilesDAO;
@@ -25,6 +26,12 @@ public class ProfilesDAOFake implements ProfilesDAO {
 
 	@Override
 	public String getLocalGroup(String externalGroup) {
+		return null;
+	}
+
+	@Override
+	public List<String> getLocalGroups(String externalGroup) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

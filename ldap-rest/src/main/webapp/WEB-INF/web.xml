@@ -15,6 +15,9 @@
 		<realm-name>rest-client-realm</realm-name>
 	</login-config>
 
+	<listener>
+		<listener-class>it.consoft.ldap.example.rest.listener.InitListener</listener-class>
+	</listener>
 
 	<servlet>
 		<servlet-name>jersey-serlvet</servlet-name>
