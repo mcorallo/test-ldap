@@ -17,7 +17,7 @@ public class WebUtils {
 			, configurationManager.getProperty("rest.service.username")//
 			, configurationManager.getProperty("rest.service.password"));
 
-	public static ConfigurationManager getConfigurationmanager() {
+	public static ConfigurationManager getConfigurationManager() {
 		return configurationManager;
 	}
 
