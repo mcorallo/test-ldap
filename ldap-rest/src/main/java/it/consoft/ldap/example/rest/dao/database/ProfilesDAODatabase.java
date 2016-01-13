@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.dao.ProfilesDAO;
-import it.consoft.sharedutils.jdbc.QueryBuilder;
-import it.consoft.sharedutils.jdbc.QueryHelper;
+import it.consoft.shared.jdbc.QueryBuilder;
+import it.consoft.shared.jdbc.QueryHelper;
 
 public class ProfilesDAODatabase implements ProfilesDAO {
 

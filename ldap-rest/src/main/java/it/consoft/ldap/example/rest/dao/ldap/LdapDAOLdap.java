@@ -8,10 +8,10 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.consoft.common.configuration.ConfigurationManager;
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.dao.LdapDAO;
 import it.consoft.ldap.example.rest.util.RestUtils;
+import it.consoft.shared.common.configuration.ConfigurationManager;
 import it.consoft.shared.ldap.Ldap;
 import it.consoft.shared.ldap.LdapConfiguration;
 
