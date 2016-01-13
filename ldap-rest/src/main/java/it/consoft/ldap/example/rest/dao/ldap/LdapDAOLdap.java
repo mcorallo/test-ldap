@@ -20,7 +20,7 @@ public class LdapDAOLdap implements LdapDAO {
 	private static List<Ldap> ldapServers = new ArrayList<>();
 
 	static {
-		ConfigurationManager cm = RestUtils.getConfigurationmanager();
+		ConfigurationManager cm = RestUtils.getConfigurationManager();
 		String[] ldapProviders = cm.getStringArray("ldap.providers");
 		for (String provider : ldapProviders) {
 			Map<String, String> subset = cm.getSubset("ldap." + provider);

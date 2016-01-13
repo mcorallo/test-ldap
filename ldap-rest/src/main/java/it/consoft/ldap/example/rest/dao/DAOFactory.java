@@ -8,7 +8,7 @@ import it.consoft.ldap.example.rest.util.RestUtils;
 
 public class DAOFactory {
 
-	private static boolean testEnvironment = RestUtils.getConfigurationmanager().isTestEnv();
+	private static boolean testEnvironment = RestUtils.getConfigurationManager().isTestEnv();
 
 	public static UsersDAO getUsersDAO() {
 		return new UsersDAOFake();

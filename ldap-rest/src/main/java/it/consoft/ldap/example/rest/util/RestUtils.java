@@ -8,7 +8,7 @@ public class RestUtils {
 
 	private static ConfigurationManager configurationManager = new ConfigurationManager(SYSTEM_PROPERTIES);
 
-	public static ConfigurationManager getConfigurationmanager() {
+	public static ConfigurationManager getConfigurationManager() {
 		return configurationManager;
 	}
 
