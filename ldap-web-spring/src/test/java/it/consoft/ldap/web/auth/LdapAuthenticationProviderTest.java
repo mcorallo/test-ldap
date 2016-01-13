@@ -14,7 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 
 import it.consoft.ldap.example.rest.bean.User;
-import it.consoft.ldap.web.utils.JsonUtils;
+import it.consoft.shared.rest.JsonUtils;
 
 public class LdapAuthenticationProviderTest extends GenericRestTest {
 

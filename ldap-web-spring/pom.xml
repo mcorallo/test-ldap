@@ -72,6 +72,12 @@
 			<artifactId>shared-utils-ldap</artifactId>
 			<version>${shared.utils.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>it.consoft</groupId>
+			<artifactId>shared-utils-rest</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 
 <!-- utils -->
 		<dependency>
@@ -114,7 +120,6 @@
 			<version>1.58</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

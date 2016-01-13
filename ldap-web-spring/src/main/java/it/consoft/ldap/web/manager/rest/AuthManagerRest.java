@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.web.manager.AuthManager;
-import it.consoft.ldap.web.utils.RestUtils;
+import it.consoft.ldap.web.utils.WebUtils;
+import it.consoft.shared.rest.RestUtils;
 
 @Service
 public class AuthManagerRest implements AuthManager {
@@ -24,7 +25,12 @@ public class AuthManagerRest implements AuthManager {
 		queryParams.put("username", name);
 		queryParams.put("password", password);
 
-		User user = RestUtils.get("ldap", queryParams, null, User.class);
+		String restServiceUrl = WebUtils.getConfigurationmanager().getProperty("rest.service.url");
+		String restServiceUsername = WebUtils.getConfigurationmanager().getProperty("rest.service.username");
+		String restServicePassword = WebUtils.getConfigurationmanager().getProperty("rest.service.password");
+		RestUtils restUtils = new RestUtils(restServiceUrl, restServiceUsername, restServicePassword);
+		
+		User user = restUtils.get("ldap", queryParams, null, User.class);
 
 		List<GrantedAuthority> grantedAuths = new ArrayList<>();
 		for (String s : user.getGroups()) {
