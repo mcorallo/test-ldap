@@ -5,6 +5,7 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/authenticate" access="permitAll" method="POST" />
 		<intercept-url pattern="/login**" access="permitAll" />
 		<intercept-url pattern="/hello/**" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />

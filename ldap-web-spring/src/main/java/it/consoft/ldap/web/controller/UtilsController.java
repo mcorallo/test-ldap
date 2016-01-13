@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.consoft.ldap.web.filter.LocalizationFilter;
 
 @Controller
-public class UtilsController {
+public class UtilsController extends BaseController {
 
 	@RequestMapping(value = "/locale", method = RequestMethod.POST)
 	public void logoutPage(HttpServletRequest request, HttpServletResponse response) {
