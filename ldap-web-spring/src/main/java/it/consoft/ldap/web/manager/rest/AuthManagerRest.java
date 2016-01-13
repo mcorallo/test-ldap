@@ -9,12 +9,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.web.manager.AuthManager;
 import it.consoft.ldap.web.utils.RestUtils;
 
-//@Service
+@Service
 public class AuthManagerRest implements AuthManager {
 
 	@Override

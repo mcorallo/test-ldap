@@ -11,20 +11,29 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class RestUtils {
 	private static final Logger logger = LoggerFactory.getLogger(RestUtils.class);
 
-	private static final String HTTP_LOCALHOST_8080_LDAP_REST_REST = "http://localhost:8080/ldap-rest/rest/";
+	private static final Client client;
+	private static final String restServiceUrl;
 
-	private static final Client client = ClientBuilder.newClient();
+	static {
+		restServiceUrl = WebUtils.getConfigurationmanager().getProperty("rest.service.url");
+		String restServiceUsername = WebUtils.getConfigurationmanager().getProperty("rest.service.username");
+		String restServicePassword = WebUtils.getConfigurationmanager().getProperty("rest.service.password");
+		client = ClientBuilder.newClient();
+		HttpAuthenticationFeature feature = HttpAuthenticationFeature.basicBuilder().nonPreemptive().credentials(restServiceUsername, restServicePassword).build();
+		client.register(feature);
+	}
 
 	public static <T> T get(String resource, Map<String, Object> queryParams, List<String> pathParams, Class<?> resultClass) {
 		logger.debug("Sending REST request GET: {}/{}?{}", resource, pathParams, queryParams);
-		
-		WebTarget target = client.target(HTTP_LOCALHOST_8080_LDAP_REST_REST).path(resource);
+
+		WebTarget target = client.target(restServiceUrl).path(resource);
 
 		if (pathParams != null) {
 			for (String s : pathParams) {

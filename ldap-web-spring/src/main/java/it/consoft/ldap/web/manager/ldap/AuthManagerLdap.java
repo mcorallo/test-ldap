@@ -11,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Service;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.web.manager.AuthManager;
@@ -20,7 +19,7 @@ import it.consoft.shared.common.configuration.ConfigurationManager;
 import it.consoft.shared.ldap.Ldap;
 import it.consoft.shared.ldap.LdapConfiguration;
 
-@Service
+//@Service
 public class AuthManagerLdap implements AuthManager {
 	private static final Logger logger = LoggerFactory.getLogger(AuthManagerLdap.class);
 
