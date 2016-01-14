@@ -28,10 +28,6 @@ public class ProfilesDAOTest extends LdapRestBaseTest {
 	 */
 	@Test
 	public void testInit() throws Exception {
-		ProfilesDAODatabase dao = new ProfilesDAODatabase();
-
-		dao.init();
-
 		QueryHelper queryHelper = DbUtils.getQueryHelper();
 
 		QueryBuilder builder = new QueryBuilder();
@@ -55,14 +51,12 @@ public class ProfilesDAOTest extends LdapRestBaseTest {
 	@Test(expected = SQLException.class)
 	public void insertUserNoUsernameTest() throws SQLException {
 		ProfilesDAODatabase dao = new ProfilesDAODatabase();
-		dao.init();
 		dao.createLocalUser(new User());
 	}
 
 	@Test
 	public void insertUserTest() throws SQLException {
 		ProfilesDAODatabase dao = new ProfilesDAODatabase();
-		dao.init();
 		User user = new User();
 		user.setUsername("test");
 		int createLocalUser = dao.createLocalUser(user);
