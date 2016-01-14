@@ -8,10 +8,10 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import it.consoft.ldap.example.rest.bean.User;
+import it.consoft.ldap.example.rest.test.LdapRestBaseTest;
 import it.consoft.shared.jdbc.QueryBuilder;
 import it.consoft.shared.jdbc.QueryHelper;
 import it.consoft.shared.jdbc.Record;
@@ -20,14 +20,7 @@ import it.consoft.shared.jdbc.Record;
  * @author csmi871
  *
  */
-public class ProfilesDAOTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+public class ProfilesDAOTest extends LdapRestBaseTest {
 
 	/**
 	 * Test method for {@link it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase#init()}.
@@ -58,14 +51,14 @@ public class ProfilesDAOTest {
 		select = queryHelper.select(builder.getQuery());
 		assertEquals(0, select.size());
 	}
-	
-	@Test(expected=SQLException.class)
+
+	@Test(expected = SQLException.class)
 	public void insertUserNoUsernameTest() throws SQLException {
 		ProfilesDAODatabase dao = new ProfilesDAODatabase();
 		dao.init();
 		dao.createLocalUser(new User());
 	}
-	
+
 	@Test
 	public void insertUserTest() throws SQLException {
 		ProfilesDAODatabase dao = new ProfilesDAODatabase();

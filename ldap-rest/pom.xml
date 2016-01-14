@@ -51,6 +51,12 @@
 				<env>prod</env>
 			</properties>
 		</profile>
+		<profile>
+			<id>unit-test</id>
+			<properties>
+				<env>unit-test</env>
+			</properties>
+		</profile>
 	</profiles>
 
 	<dependencies>
@@ -138,5 +144,32 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>it.consoft.ldap.example.rest.jobs.GenerateDDLScripts</mainClass>
+							<arguments>
+								<argument>${env}</argument>
+								<argument>${project.build.directory}/ddl</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+
+
 	</build>
 </project>
