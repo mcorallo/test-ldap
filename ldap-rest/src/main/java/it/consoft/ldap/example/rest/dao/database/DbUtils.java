@@ -1,5 +1,7 @@
 package it.consoft.ldap.example.rest.dao.database;
 
+import java.sql.SQLException;
+
 import it.consoft.ldap.example.rest.util.RestUtils;
 import it.consoft.shared.common.configuration.ConfigurationManager;
 import it.consoft.shared.jdbc.DBConfiguration;
@@ -21,8 +23,8 @@ public class DbUtils {
 		return dbc;
 	}
 
-	public static QueryHelper getQueryHelper() {
-		QueryHelper queryHelper = new QueryHelperJdbc(getDbConfig());
+	public static QueryHelper getQueryHelper() throws SQLException {
+		QueryHelper queryHelper = new QueryHelperJdbc(getDbConfig(),false);
 		return queryHelper;
 	}
 }
