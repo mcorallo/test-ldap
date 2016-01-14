@@ -24,7 +24,7 @@ public class DbUtils {
 	}
 
 	public static QueryHelper getQueryHelper() throws SQLException {
-		QueryHelper queryHelper = new QueryHelperJdbc(getDbConfig(),false);
+		QueryHelper queryHelper = new QueryHelperJdbc(getDbConfig(), false);
 		return queryHelper;
 	}
 }
