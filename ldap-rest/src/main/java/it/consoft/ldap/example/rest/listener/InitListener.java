@@ -1,6 +1,7 @@
 package it.consoft.ldap.example.rest.listener;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletContextEvent;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import it.consoft.ldap.example.rest.dao.database.DbUtils;
 import it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase;
+import it.consoft.ldap.example.rest.jobs.GenerateDDLScripts;
 import it.consoft.ldap.example.rest.util.RestUtils;
 import it.consoft.shared.common.configuration.ConfigurationManager;
 import it.consoft.shared.jdbc.QueryHelper;
@@ -28,17 +30,19 @@ public class InitListener implements ServletContextListener {
 
 	}
 
-	private void initDatabase() {
+	public static void initDatabase() {
 		try {
 			QueryHelper queryHelper = DbUtils.getQueryHelper();
 
-			ConfigurationManager ddl = new ConfigurationManager("/ddl.properties");
+			ConfigurationManager ddl = RestUtils.getDdlConfigurationManager();
 
-			queryHelper.executeUpdate(queries.getProperty("users.create_table"));
-			queryHelper.executeUpdate(queries.getProperty("profiles.create_table"));
-			queryHelper.executeUpdate(queries.getProperty("user_profiles.create_table"));
-			queryHelper.executeUpdate(queries.getProperty("ldap_local_group_rel.create_table"));
+			Collection<String> orderedDllQueries = GenerateDDLScripts.getOrderedDllQueries(ddl);
 
+			for (String s : orderedDllQueries) {
+				queryHelper.executeUpdate(s);
+			}
+
+			ConfigurationManager queries = RestUtils.getQueries();
 			List<Record> rs = queryHelper.select(queries.getProperty("ldap_local_group_rel.count.1"));
 			Long count = rs.get(0).getValue("TOT");
 			if (count == 0) {
