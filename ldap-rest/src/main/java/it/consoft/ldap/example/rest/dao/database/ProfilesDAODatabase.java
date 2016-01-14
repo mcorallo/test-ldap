@@ -23,7 +23,7 @@ public class ProfilesDAODatabase implements ProfilesDAO {
 
 	@Override
 	public void init() throws SQLException {
-		
+
 	}
 
 	@Override
@@ -44,6 +44,7 @@ public class ProfilesDAODatabase implements ProfilesDAO {
 	@Override
 	public List<String> getLocalGroups(String externalGroup) throws SQLException {
 		QueryHelper queryHelper = DbUtils.getQueryHelper();
+		queryHelper.setLogQueries(true);
 		QueryBuilder builder = new QueryBuilder();
 		builder.addToken("select local_group_name from ldap_local_group_rel where ldap_group_name = ?");
 		List<Record> rs = queryHelper.select(builder.getQuery(), externalGroup);
