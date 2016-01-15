@@ -12,6 +12,7 @@ public class User implements Serializable {
 	private Integer id;
 	private String username;
 	private String password;
+	private String email;
 	private Map<String, List<Object>> attrs = new HashMap<>();
 	private List<String> groups = new ArrayList<>();
 
@@ -62,6 +63,22 @@ public class User implements Serializable {
 
 	public void setAttrs(Map<String, List<Object>> attrs) {
 		this.attrs = attrs;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public static User getInstance(Map<String, Object> userData) {
+		User u = new User();
+		u.setId((Integer) userData.get("ID"));
+		u.setUsername((String) userData.get("USERNAME"));
+		u.setEmail((String) userData.get("EMAIL"));
+		return u;
 	}
 
 }

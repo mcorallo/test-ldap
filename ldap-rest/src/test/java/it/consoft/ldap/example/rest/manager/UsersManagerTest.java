@@ -2,14 +2,14 @@ package it.consoft.ldap.example.rest.manager;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import it.consoft.ldap.example.rest.bean.User;
-import it.consoft.ldap.example.rest.dao.fake.UsersDAOFake;
+import it.consoft.ldap.example.rest.dao.DAOFactory;
 import it.consoft.ldap.example.rest.test.LdapRestBaseTest;
 
 public class UsersManagerTest extends LdapRestBaseTest {
@@ -17,26 +17,29 @@ public class UsersManagerTest extends LdapRestBaseTest {
 	private User testUser;
 
 	@Before
-	public void setup() {
+	public void setup() throws SQLException {
 		String username = "test-username";
 		testUser = new User();
-		testUser.setId(-1);
 		testUser.setUsername(username);
-		UsersDAOFake.setUsersDatabase(Arrays.asList(testUser));
+		testUser.setEmail("test@test.it");
+		DAOFactory.getUsersDAO().addUser(testUser);
 	}
 
 	@Test
-	public void getUserTest() {
+	public void getUserTest() throws SQLException {
 
 		UsersManager m = new UsersManager();
 
-		User user = m.getUser(testUser.getId());
+		User user = m.getUser(testUser.getUsername());
 		assertNotNull(user);
-		assertEquals(testUser.getUsername(), user.getUsername());
+
+		User user2 = m.getUser(user.getId());
+		assertNotNull(user2);
+		assertEquals(user.getUsername(), user2.getUsername());
 	}
 
 	@Test
-	public void getUnexistingUserTest() {
+	public void getUnexistingUserTest() throws SQLException {
 
 		UsersManager m = new UsersManager();
 
@@ -45,81 +48,84 @@ public class UsersManagerTest extends LdapRestBaseTest {
 	}
 
 	@Test
-	public void getUsersTest() {
+	public void getUsersTest() throws SQLException {
 
 		UsersManager m = new UsersManager();
 
-		List<User> users = m.getUsers(testUser.getUsername());
-		assertNotNull(users);
-		assertEquals(1, users.size());
-		assertEquals(testUser.getUsername(), users.get(0).getUsername());
+		User user = m.getUser(testUser.getUsername());
+		assertNotNull(user);
+		assertEquals(testUser.getUsername(), user.getUsername());
 	}
 
 	@Test
-	public void getAllUsersTest() {
+	public void getAllUsersTest() throws SQLException {
 
 		UsersManager m = new UsersManager();
 
-		List<User> users = m.getUsers(null);
+		List<User> users = m.searchUsers(null);
 		assertNotNull(users);
-		assertEquals(1, users.size());
+		assertTrue(users.size() >= 1);
 	}
 
 	@Test
-	public void getUnexistingUsersTest() {
+	public void getUnexistingUsersTest() throws SQLException {
 
 		UsersManager m = new UsersManager();
 
-		List<User> users = m.getUsers("NONE");
+		List<User> users = m.searchUsers("NONE");
 		assertNotNull(users);
 		assertEquals(0, users.size());
 	}
 
 	@Test
-	public void addUserTest() {
+	public void addUserTest() throws SQLException {
 		String username = "test-username-2";
 		User u = new User();
 		u.setUsername(username);
+		u.setEmail("test2@test.it");
 
 		UsersManager m = new UsersManager();
 
 		boolean added = m.addUser(u);
 
 		assertTrue(added);
-		assertNotNull(u.getId());
-		assertEquals(username, u.getUsername());
 	}
 
 	@Test
-	public void addExistingUserTest() {
+	public void addExistingUserTest() throws SQLException {
 		UsersManager m = new UsersManager();
 		boolean added = m.addUser(testUser);
 		assertTrue(!added);
 	}
 
 	@Test
-	public void deleteUserTest() {
+	public void deleteUserTest() throws SQLException {
 		UsersManager m = new UsersManager();
-		boolean deleted = m.deleteUser(testUser.getId());
+		User u = m.getUser(testUser.getUsername());
+		boolean deleted = m.deleteUser(u.getId());
 		assertTrue(deleted);
 	}
 
 	@Test
-	public void deleteUnexistingUserTest() {
+	public void deleteUnexistingUserTest() throws SQLException {
 		UsersManager m = new UsersManager();
 		boolean deleted = m.deleteUser(-2);
 		assertTrue(!deleted);
 	}
 
 	@Test
-	public void updateUserTest() {
+	public void updateUserTest() throws SQLException {
 		UsersManager m = new UsersManager();
-		String modifiedUsername = testUser.getUsername() + "-MOD";
-		testUser.setUsername(modifiedUsername);
-		boolean updated = m.updateUser(testUser.getId(), testUser);
+
+		User u = m.getUser(testUser.getUsername());
+
+		String modifiedEmail = u.getEmail() + "-MOD";
+		u.setEmail(modifiedEmail);
+
+		boolean updated = m.updateUser(u.getId(), u);
 		assertTrue(updated);
 
-		User user = m.getUser(testUser.getId());
-		assertEquals(modifiedUsername, user.getUsername());
+		User user = m.getUser(u.getId());
+		assertEquals(modifiedEmail, user.getEmail());
 	}
 }

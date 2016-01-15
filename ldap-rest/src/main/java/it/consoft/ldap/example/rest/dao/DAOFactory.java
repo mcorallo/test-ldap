@@ -1,24 +1,22 @@
 package it.consoft.ldap.example.rest.dao;
 
-import it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase;
-import it.consoft.ldap.example.rest.dao.fake.ProfilesDAOFake;
-import it.consoft.ldap.example.rest.dao.fake.UsersDAOFake;
+import it.consoft.ldap.example.rest.dao.database.GroupsDAODatabase;
+import it.consoft.ldap.example.rest.dao.database.UsersDAODatabase;
 import it.consoft.ldap.example.rest.dao.ldap.LdapDAOLdap;
-import it.consoft.ldap.example.rest.util.RestUtils;
 
 public class DAOFactory {
 
-	private static boolean testEnvironment = RestUtils.getConfigurationManager().isTestEnv();
+	//	private static boolean testEnvironment = RestUtils.getConfigurationManager().isTestEnv();
 
 	public static UsersDAO getUsersDAO() {
-		return new UsersDAOFake();
+		return new UsersDAODatabase();
 	}
 
-	public static ProfilesDAO getProfilesDAO() {
-		return testEnvironment ? new ProfilesDAOFake() : new ProfilesDAODatabase();
+	public static GroupsDAO getGroupsDAO() {
+		return new GroupsDAODatabase();
 	}
 
 	public static LdapDAO getLdapDAO() {
-		return testEnvironment ? new LdapDAOLdap() : new LdapDAOLdap();
+		return new LdapDAOLdap();
 	}
 }

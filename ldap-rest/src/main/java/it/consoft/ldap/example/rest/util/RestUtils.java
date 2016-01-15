@@ -27,4 +27,12 @@ public class RestUtils {
 	public static ConfigurationManager getDdlConfigurationManager() {
 		return ddlConfigurationManager;
 	}
+
+	public static boolean isUnitTestEnv() {
+		return configurationManager.isUnitTestEnv();
+	}
+
+	public static boolean isLocalEnv() {
+		return configurationManager.isLocalEnv();
+	}
 }
