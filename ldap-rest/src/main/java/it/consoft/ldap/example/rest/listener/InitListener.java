@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.consoft.ldap.example.rest.dao.database.DbUtils;
-import it.consoft.ldap.example.rest.dao.database.ProfilesDAODatabase;
 import it.consoft.ldap.example.rest.jobs.GenerateDDLScripts;
 import it.consoft.ldap.example.rest.util.RestUtils;
 import it.consoft.shared.common.configuration.ConfigurationManager;
@@ -50,8 +49,6 @@ public class InitListener implements ServletContextListener {
 			}
 			logger.debug("local in memory database initialized");
 
-			new ProfilesDAODatabase().init();
-			logger.info("ProfilesDAODatabase initialized");
 		} catch (SQLException e) {
 			logger.error("", e);
 		}

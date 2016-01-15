@@ -1,5 +1,6 @@
 package it.consoft.ldap.example.rest.resource;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -26,14 +27,13 @@ public class Users {
 	private UsersManager usersManager = new UsersManager();
 
 	@GET
-	public List<User> getUsers(@QueryParam("username") String username) {
-		List<User> users = usersManager.getUsers(username);
-		return users;
+	public List<User> searchUsers(@QueryParam("username") String username) throws SQLException {
+		return usersManager.searchUsers(username);
 	}
 
 	@GET
 	@Path("/{id}")
-	public Response getUser(@PathParam("id") Integer id) {
+	public Response getUser(@PathParam("id") Integer id) throws SQLException {
 		User user = usersManager.getUser(id);
 
 		if (user == null) {
@@ -44,7 +44,7 @@ public class Users {
 	}
 
 	@POST
-	public Response addUser(User user) {
+	public Response addUser(User user) throws SQLException {
 		boolean result = usersManager.addUser(user);
 		if (!result) {
 			return Response.status(Status.CONFLICT).entity("User already exists: " + user.getUsername()).build();
@@ -55,7 +55,7 @@ public class Users {
 
 	@PUT
 	@Path("/{id}")
-	public Response updateUser(@PathParam("id") Integer id, User user) {
+	public Response updateUser(@PathParam("id") Integer id, User user) throws SQLException {
 		boolean result = usersManager.updateUser(id, user);
 
 		if (!result) {
@@ -67,7 +67,7 @@ public class Users {
 
 	@DELETE
 	@Path("/{id}")
-	public Response deleteUser(@PathParam("id") Integer id) {
+	public Response deleteUser(@PathParam("id") Integer id) throws SQLException {
 		boolean result = usersManager.deleteUser(id);
 
 		if (!result) {

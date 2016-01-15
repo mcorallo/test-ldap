@@ -5,10 +5,18 @@ import java.sql.SQLException;
 import it.consoft.ldap.example.rest.util.RestUtils;
 import it.consoft.shared.common.configuration.ConfigurationManager;
 import it.consoft.shared.jdbc.DBConfiguration;
+import it.consoft.shared.jdbc.DBUtils;
 import it.consoft.shared.jdbc.QueryHelper;
 import it.consoft.shared.jdbc.QueryHelperJdbc;
+import it.consoft.shared.jdbc.TransactionBatch;
 
 public class DbUtils {
+
+	static {
+		if (RestUtils.isUnitTestEnv() || RestUtils.isLocalEnv()) {
+			QueryHelper.setLogQueries(true);
+		}
+	}
 
 	public static DBConfiguration getDbConfig() {
 		ConfigurationManager cm = RestUtils.getConfigurationManager();
@@ -26,5 +34,9 @@ public class DbUtils {
 	public static QueryHelper getQueryHelper() throws SQLException {
 		QueryHelper queryHelper = new QueryHelperJdbc(getDbConfig(), false);
 		return queryHelper;
+	}
+
+	public static boolean executeTransaction(TransactionBatch transactionBatch) throws SQLException {
+		return DBUtils.executeTransaction(transactionBatch, getDbConfig());
 	}
 }

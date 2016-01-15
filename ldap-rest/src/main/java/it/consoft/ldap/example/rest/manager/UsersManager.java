@@ -1,50 +1,46 @@
 package it.consoft.ldap.example.rest.manager;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 import it.consoft.ldap.example.rest.bean.User;
 import it.consoft.ldap.example.rest.dao.DAOFactory;
-import it.consoft.ldap.example.rest.dao.ProfilesDAO;
+import it.consoft.ldap.example.rest.dao.GroupsDAO;
 import it.consoft.ldap.example.rest.dao.UsersDAO;
 
 public class UsersManager {
 
-	public List<User> getUsers(String username) {
-		UsersDAO daoLdap = DAOFactory.getUsersDAO();
-		List<User> usersList = daoLdap.getUsers(username);
+	public List<User> searchUsers(String username) throws SQLException {
+		UsersDAO dao = DAOFactory.getUsersDAO();
+		List<User> usersList = dao.searchUsers(username);
 
-		ProfilesDAO pd = DAOFactory.getProfilesDAO();
+		GroupsDAO gd = DAOFactory.getGroupsDAO();
 
 		for (User user : usersList) {
-			List<String> localGroups = new ArrayList<>();
-			for (String g : user.getGroups()) {
-				localGroups.add(pd.getLocalGroup(g));
-			}
-			user.setGroups(localGroups);
+			user.setGroups(gd.getUserGroups(user.getId()));
 		}
 
 		return usersList;
 	}
 
-	public boolean addUser(User user) {
-		UsersDAO dao = DAOFactory.getUsersDAO();
-
-		return dao.addUser(user);
-	}
-
-	public boolean updateUser(Integer id, User user) {
-		UsersDAO dao = DAOFactory.getUsersDAO();
-		return dao.updateUser(id, user);
-	}
-
-	public boolean deleteUser(Integer id) {
-		UsersDAO dao = DAOFactory.getUsersDAO();
-		return dao.deleteUser(id);
-	}
-
-	public User getUser(Integer id) {
+	public User getUser(Integer id) throws SQLException {
 		return DAOFactory.getUsersDAO().getUser(id);
+	}
+
+	public User getUser(String username) throws SQLException {
+		return DAOFactory.getUsersDAO().getUser(username);
+	}
+
+	public boolean addUser(User user) throws SQLException {
+		return DAOFactory.getUsersDAO().addUser(user);
+	}
+
+	public boolean updateUser(Integer id, User user) throws SQLException {
+		return DAOFactory.getUsersDAO().updateUser(id, user);
+	}
+
+	public boolean deleteUser(Integer id) throws SQLException {
+		return DAOFactory.getUsersDAO().deleteUser(id);
 	}
 
 }
